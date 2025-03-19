@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html><head>
   <title>Bio - Alex Hebert Music</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,13 +38,12 @@
       display: flex;
       flex-wrap: wrap;
       gap: 20px; /* Space between text and photo */
-      align-items: flex-start; /* Align items to the top */
+      align-items: center; /* Vertically center items */
     }
 
     .bio-text {
       flex: 1;
       min-width: 300px; /* Ensure text doesn't get too narrow */
-      margin-right: 375px; /* Add space for the photo */
     }
 
     .bio-photo {
@@ -57,15 +55,6 @@
       max-width: 100%;
       height: auto;
       border-radius: 10px; /* Optional: Add rounded corners */
-    }
-
-    /* Container for the photo (outside grayscale) */
-    .photo-container {
-      position: absolute;
-      top: 50%; /* Adjust as needed */
-      right: 400px; /* Move photo closer to the text (adjust this value) */
-      transform: translateY(-50%);
-      z-index: 2; /* Ensure it's above other content */
     }
   </style>
 </head>
@@ -100,22 +89,26 @@
       <!-- Bio Text -->
       <div class="bio-text">
         <p>
-          Alex Hébert (b. 2006) is a percussionist and composer based in College Station, 
-          TX. He is currently a Freshman at Texas A&M University studying applied mathematics
-          and computer science. With a background in piano, he reunited with music 
+          Alex Hébert (b. 2006) is a percussionist and composer based in College Station,
+          TX. He is currently a Freshman at Texas A&amp;M University studying applied mathematics
+          and computer science. With a background in piano, he reunited with music
           during high school and began composing for the marimba. <br> <br>
           As a composer, Alex is deeply inspired by telling a story through music.
           His debut piece, Dragon's Hiraeth, traverses the themes
           of longing and adventure through this musical storytelling. He is working on
           blending the modern styles of his favorite composers for the goal of creating
           more inspiration and awareness for marimba composers and expanding marimba repertoire. <br> <br>
-          As a performer, although he has no formal experience (yet), he has performed 
+          As a performer, although he has no formal experience (yet), he has performed
           for audiences such as Dr. Brad Meyer at Stephen F. Austin University, earning a
-          1 at state competition, the highest score. He is still dedicated to honing his craft 
+          1 at state competition, the highest score. He is still dedicated to honing his craft
           and sharing his music on stage one day. <br> <br>
-          Besides music, Alex enjoys teaching and studying mathematics as well as 
+          Besides music, Alex enjoys teaching and studying mathematics as well as
           programming.
         </p>
+      </div>
+      <!-- Bio Photo -->
+      <div class="bio-photo">
+        <img src="https://i.ibb.co/HL1VtD7x/IMG-0199.jpg" alt="Alex Hébert"> <!-- Replace with your photo -->
       </div>
     </div>
   </div>
@@ -124,16 +117,9 @@
 <!-- End page content -->
 </div>
 
-<!-- Photo Container (Outside Grayscale) -->
-<div class="photo-container">
-  <div class="bio-photo">
-    <img src="https://i.ibb.co/HL1VtD7x/IMG-0199.jpg" alt="Alex Hébert"> <!-- Replace with your photo -->
-  </div>
-</div>
-
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-48 w3-large">
   <p>© Alex Hébert 2025</p>
 </footer>
-</body>
-</html>
+
+</body></html>

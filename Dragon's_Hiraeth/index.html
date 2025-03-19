@@ -72,7 +72,7 @@
 </div>
 
 <!-- Include the PayPal JavaScript SDK -->
-<script src="https://www.paypal.com/sdk/js?client-id=BAAMQMweNkMrsbbPQ-2lp2J6gt8OKVErMf7i8hi46cxU2Jb7wEIguPRcblhNs6AOYEtHLwCGPIqfu20hWo&currency=USD"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=BAAMQMweNkMrsbbPQ-2lp2J6gt8OKVErMf7i8hi46cxU2Jb7wEIguPRcblhNs6AOYEtHLwCGPIqfu20hWo&currency=USD&disable-funding=card"></script>
 
 <script>
   // Render the PayPal button into #paypal-button-container
@@ -82,18 +82,16 @@
       shape: 'pill',  // Pill-shaped button
       label: 'pay',   // "Pay" label
       height: 40,     // Button height
-      layout: 'vertical', // Optional: Adjust layout if needed
-      tagline: false  // Disable the "The safer, easier way to pay" tagline
+      layout: 'vertical', // Keep stacked buttons
+      tagline: false  // Disable tagline for cleaner UI
     },
-
+    
     // Set up the transaction
     createOrder: function(data, actions) {
       return actions.order.create({
         purchase_units: [{
           amount: {
-            // Switch these commented out lines to test pricing.
             value: '20.00',
-            //value: '00.01',
             currency_code: 'USD' // Set the currency
           },
           description: 'Purchase of Dragon\'s Hiraeth Sheet Music' // Product description
@@ -104,13 +102,9 @@
     // Handle the payment approval
     onApprove: function(data, actions) {
       return actions.order.capture().then(function(orderData) {
-        // Successful capture! For demo purposes:
         console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
         var transaction = orderData.purchase_units[0].payments.captures[0];
         alert('Transaction ' + transaction.status + ': ' + transaction.id + '\n\nThank you for your purchase! Please send me a video of you playing if you learn it! I will personally email you the sheet music PDF within 48-72 hours.');
-
-        // Optionally, redirect the customer to a thank-you page
-        // window.location.href = 'thank_you.html';
       });
     },
 
@@ -120,6 +114,20 @@
       alert('Sorry, there was an error processing your payment. Please try again.');
     }
   }).render('#paypal-button-container');
+
+  // Manually add the "Powered by PayPal" text
+  document.addEventListener('DOMContentLoaded', function() {
+    const paypalContainer = document.getElementById('paypal-button-container');
+    if (paypalContainer) {
+      const poweredByText = document.createElement('div');
+      poweredByText.style.textAlign = 'center';
+      poweredByText.style.marginTop = '10px';
+      poweredByText.style.fontSize = '12px';
+      poweredByText.style.color = '#ffffff'; // White text color
+      poweredByText.textContent = 'Powered by PayPal';
+      paypalContainer.appendChild(poweredByText);
+    }
+  });
 </script>
 
 </body>
