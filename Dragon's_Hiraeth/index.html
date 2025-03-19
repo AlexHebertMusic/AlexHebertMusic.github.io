@@ -92,8 +92,8 @@
         purchase_units: [{
           amount: {
             // Switch these commented out lines to test pricing.
-            //value: '20.00',
-            value: '00.01',
+            value: '20.00',
+            //value: '00.01',
             currency_code: 'USD' // Set the currency
           },
           description: 'Purchase of Dragon\'s Hiraeth Sheet Music' // Product description
@@ -107,7 +107,7 @@
         // Successful capture! For demo purposes:
         console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
         var transaction = orderData.purchase_units[0].payments.captures[0];
-        alert('Transaction ' + transaction.status + ': ' + transaction.id + '\n\nThank you for your purchase! Please send me a video of you playing if you learn it!');
+        alert('Transaction ' + transaction.status + ': ' + transaction.id + '\n\nThank you for your purchase! Please send me a video of you playing if you learn it! I will personally email you the sheet music PDF within 48-72 hours.');
 
         // Optionally, redirect the customer to a thank-you page
         // window.location.href = 'thank_you.html';

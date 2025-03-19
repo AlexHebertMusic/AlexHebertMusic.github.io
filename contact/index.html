@@ -11,7 +11,7 @@
       height: 100%;
       margin: 0;
       font-family: "Inconsolata", sans-serif;
-      background-color: "w3-sand";
+      background-color: #fdf5e6; /* W3.CSS sand color */
     }
 
     body {
@@ -24,7 +24,7 @@
     }
 
     footer {
-      flex-shrink:0;
+      flex-shrink: 0;
     }
 
     .bgimg {
@@ -32,6 +32,45 @@
       background-size: cover;
       background-image: url("/w3images/coffeehouse.jpg");
       min-height: 75%;
+    }
+
+    /* Style for the contact form */
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: "Inconsolata", sans-serif;
+    }
+
+    .contact-form textarea {
+      height: 150px;
+      resize: vertical;
+    }
+
+    .contact-form button {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: "Inconsolata", sans-serif;
+    }
+
+    .contact-form button:hover {
+      background-color: #333;
     }
   </style>
 </head>
@@ -60,11 +99,21 @@
 
 <!-- Contact Container -->
 <div class="w3-container" id="contact">
-  <div class="w3-content w3-center" style="max-width:700px"> <!-- Added w3-center here -->
-    <h5 class="w3-padding-64"><span class="w3-tag w3-wide">CONTACT</span></h5>
-    <p>Hey! Feel free to ask me questions, send your recordings of my pieces, or anything 
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">CONTACT</span></h5>
+    <p class="w3-center">Hey! Feel free to ask me questions, send your recordings of my pieces, or anything 
       else you find interesting to me here or through my email:</p>
-    <p>alexhebertmusic@gmail.com</p>
+    <p class="w3-center"><strong>alexhebertmusic@gmail.com</strong></p>
+    <p class="w3-center">(The message system is down right now - please email me at the above email until I remove this notice.)</p>
+    <!-- Contact Form -->
+    <div class="contact-form">
+      <form action="https://formsubmit.co/alexhebertmusic@email.com" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
   </div>
 </div>
 
