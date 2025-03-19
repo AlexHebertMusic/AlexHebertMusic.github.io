@@ -11,7 +11,7 @@
       height: 100%;
       margin: 0;
       font-family: "Inconsolata", sans-serif;
-      background-color: "w3-sand";
+      background-color: #fdf5e6; /* W3.CSS sand color */
     }
 
     body {
@@ -24,7 +24,7 @@
     }
 
     footer {
-      flex-shrink:0;
+      flex-shrink: 0;
     }
 
     .bgimg {
@@ -32,6 +32,40 @@
       background-size: cover;
       background-image: url("/w3images/coffeehouse.jpg");
       min-height: 75%;
+    }
+
+    /* Flexbox layout for bio content */
+    .bio-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px; /* Space between text and photo */
+      align-items: flex-start; /* Align items to the top */
+    }
+
+    .bio-text {
+      flex: 1;
+      min-width: 300px; /* Ensure text doesn't get too narrow */
+      margin-right: 375px; /* Add space for the photo */
+    }
+
+    .bio-photo {
+      max-width: 300px; /* Adjust photo width as needed */
+      text-align: center; /* Center the photo */
+    }
+
+    .bio-photo img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px; /* Optional: Add rounded corners */
+    }
+
+    /* Container for the photo (outside grayscale) */
+    .photo-container {
+      position: absolute;
+      top: 50%; /* Adjust as needed */
+      right: 400px; /* Move photo closer to the text (adjust this value) */
+      transform: translateY(-50%);
+      z-index: 2; /* Ensure it's above other content */
     }
   </style>
 </head>
@@ -56,19 +90,45 @@
 </div>
 
 <!-- Add a background color and large text to the whole page -->
-<div class="w3-sand w3-grayscale w3-large">
+<div class="w3-sand w3-grayscale w3-large"> <!-- Keep w3-grayscale -->
 
 <!-- Bio Container -->
 <div class="w3-container" id="bio">
-  <div class="w3-content" style="max-width:700px">
+  <div class="w3-content" style="max-width:900px">
     <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">BIO</span></h5>
-      <center>
-    <p>This is the bio page. You can add your biography, achievements, and any other relevant information here.</p>
-      </center>
+    <div class="bio-container">
+      <!-- Bio Text -->
+      <div class="bio-text">
+        <p>
+          Alex Hébert (b. 2006) is a percussionist and composer based in College Station, 
+          TX. He is currently a Freshman at Texas A&M University studying applied mathematics
+          and computer science. With a background in piano, he reunited with music 
+          during high school and began composing for the marimba. <br> <br>
+          As a composer, Alex is deeply inspired by telling a story through music.
+          His debut piece, Dragon's Hiraeth, traverses the themes
+          of longing and adventure through this musical storytelling. He is working on
+          blending the modern styles of his favorite composers for the goal of creating
+          more inspiration and awareness for marimba composers and expanding marimba repertoire. <br> <br>
+          As a performer, although he has no formal experience (yet), he has performed 
+          for audiences such as Dr. Brad Meyer at Stephen F. Austin University, earning a
+          1 at state competition, the highest score. He is still dedicated to honing his craft 
+          and sharing his music on stage one day. <br> <br>
+          Besides music, Alex enjoys teaching and studying mathematics <br> as well as 
+          programming.
+        </p>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- End page content -->
+</div>
+
+<!-- Photo Container (Outside Grayscale) -->
+<div class="photo-container">
+  <div class="bio-photo">
+    <img src="https://i.ibb.co/HL1VtD7x/IMG-0199.jpg" alt="Alex Hébert"> <!-- Replace with your photo -->
+  </div>
 </div>
 
 <!-- Footer -->

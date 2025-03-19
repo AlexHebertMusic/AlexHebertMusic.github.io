@@ -5,33 +5,122 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway|Bebas+Neue|Oswald|Anton|Roboto+Slab">
   <style>
-    body,h1 {font-family: "Raleway", sans-serif}
-    body, html {height: 100%}
+    body, h1 {
+      font-family: "Raleway", sans-serif;
+    }
+    body, html {
+      height: 100%;
+      margin: 0;
+    }
     .bgimg {
-      background-image: url('https://media.cntraveler.com/photos/5eb18e42fc043ed5d9779733/master/pass/BlackForest-Germany-GettyImages-147180370.jpg');
+      background-image: url('https://i.ibb.co/mCK1yscZ/forest.png');
       min-height: 100%;
       background-position: center;
       background-size: cover;
+    }
+    #paypal-button-wrapper {
+      background-color: #000000; /* Pure black background */
+      padding: 10px; /* Adjust padding as needed */
+      border-radius: 25px; /* Match the pill shape */
+      display: inline-block; /* Ensure it wraps the button */
+      margin-top: 40px; /* Move the button wrapper further down */
+    }
+    #paypal-button-container {
+      margin-top: 20px; /* Additional spacing inside the wrapper */
+    }
+    .title {
+      font-size: 96px; /* Larger title */
+      font-family: 'Bebas Neue', sans-serif; /* Stronger font */
+      font-weight: bold; /* Bold weight */
+      text-transform: uppercase; /* All caps */
+    }
+    .description {
+      font-size: 18px; /* Description text size */
+      font-family: 'Raleway', sans-serif; /* Consistent font */
+      line-height: 1.6; /* Improve readability */
+      max-width: 700px; /* Limit width for better readability */
+      margin: 20px auto; /* Center the description */
+      padding: 0 20px; /* Add some padding */
+    }
+    .w3-display-middle {
+      top: 50%; /* Center vertically */
+      left: 50%; /* Center horizontally */
+      transform: translate(-50%, -50%); /* Adjust for exact centering */
+      width: 90%; /* Ensure content fits within the screen */
+      max-width: 1200px; /* Limit maximum width */
+      text-align: center; /* Center text within the container */
     }
   </style>
 </head>
 <body>
 
 <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
-  <div class="w3-display-middle">
-    <h1 class="w3-jumbo w3-animate-top">DRAGON'S HIRAETH</h1>
+  <div class="w3-display-middle w3-center">
+    <h1 class="title w3-animate-top">Dragon's Hiraeth</h1>
     <hr class="w3-border-grey" style="margin:auto;width:40%">
-    <!-- PayPal Button -->
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="w3-large w3-center">
-      <input type="hidden" name="cmd" value="_s-xclick">
-      <input type="hidden" name="hosted_button_id" value="YOUR_PAYPAL_BUTTON_ID">
-      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-      <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-    </form>
+    <!-- Song Description -->
+    <div class="description">
+      <p><em>Dragon's Hiraeth</em> is a 4-mallet advanced 5.0 octave marimba solo aimed at players with experience in several techniques (mallet independence, one-handed rolls, etc.). <em>Hiraeth</em> is Welsh and refers to a longing for a home. This piece is about a dragon's journey to find one, marked with several distinct sections: searching, flying, and found. Finally, the recurring motif of 'spiraling' interrupts the progress of the journey. Will you make it home?</p>
+    </div>
+    <!-- PayPal Button Wrapper -->
+    <div id="paypal-button-wrapper">
+      <div id="paypal-button-container"></div>
+    </div>
   </div>
 </div>
+
+<!-- Include the PayPal JavaScript SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=AZ0bh-rpuu3FnjY3ZhKIdunVDSBc9maQ4_SVqQPDYY3jbJLJwFRlXBH1BdIQLqm_4Zh6Qjw4gks9E9Bk&currency=USD"></script>
+
+<script>
+  // Render the PayPal button into #paypal-button-container
+  paypal.Buttons({
+    style: {
+      color: 'black', // Darkest color option
+      shape: 'pill',  // Pill-shaped button
+      label: 'pay',   // "Pay" label
+      height: 40,     // Button height
+      layout: 'vertical', // Optional: Adjust layout if needed
+      tagline: false  // Disable the "The safer, easier way to pay" tagline
+    },
+
+    // Set up the transaction
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            // Switch these commented out lines to test pricing.
+            value: '20.00',
+            // value: '00.01',
+            currency_code: 'USD' // Set the currency
+          },
+          description: 'Purchase of Dragon\'s Hiraeth Sheet Music' // Product description
+        }]
+      });
+    },
+
+    // Handle the payment approval
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(orderData) {
+        // Successful capture! For demo purposes:
+        console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+        var transaction = orderData.purchase_units[0].payments.captures[0];
+        alert('Transaction ' + transaction.status + ': ' + transaction.id + '\n\nThank you for your purchase! Please send me a video of you playing if you learn it!');
+
+        // Optionally, redirect the customer to a thank-you page
+        // window.location.href = 'thank_you.html';
+      });
+    },
+
+    // Handle errors
+    onError: function(err) {
+      console.error('An error occurred during the transaction:', err);
+      alert('Sorry, there was an error processing your payment. Please try again.');
+    }
+  }).render('#paypal-button-container');
+</script>
 
 </body>
 </html>
